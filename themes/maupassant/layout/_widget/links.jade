@@ -1,0 +1,9 @@
+.widget
+  .widget-title
+    i(class='fa fa-external-link')= ' ' + __('blogroll')
+  - for (var i in theme.links)
+    ul
+    a(href='#{theme.links[i].url}' title='#{theme.links[i].title}' target='_blank') #{theme.links[i].title}
+
+  .song
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="https://music.163.com/outchain/player?type=2&id=29764473&auto=1&height=32"></iframe>
