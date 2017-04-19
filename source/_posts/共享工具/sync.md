@@ -16,35 +16,37 @@ tags: [工具]
 [**Resilio Sync**](https://www.resilio.com)，原名：BitTorrent Sync，
 采用了不一样的解决方法：不需要把文件上传到云端服务器，而是通过 P2P 的方式，直接将文件从你的设备传到对方设备上，它不限速、不限文件大小、不需要注册账号。
 
+资源网站：[http://wherebt.com/](http://wherebt.com/)
+
 # 使用介绍
 
 ## 共享文件
 1. 添加分享文件夹
-	![](http://ww1.sinaimg.cn/large/91ddf859gy1fcgsbkwu13j20l8077js2)
-**分享文件夹有三种**：
-	* 标准文件夹
-	* 高级文件夹
-	* 加密文件夹
-	
-	![](http://ww1.sinaimg.cn/large/91ddf859gy1fcgrygzsz6j20le0htq4q)
+  ![](http://ww1.sinaimg.cn/large/91ddf859gy1fcgsbkwu13j20l8077js2)
+  **分享文件夹有三种**：
+  * 标准文件夹
+  * 高级文件夹
+  * 加密文件夹
+
+  ![](http://ww1.sinaimg.cn/large/91ddf859gy1fcgrygzsz6j20le0htq4q)
 
 > 经过测试，只有加密文件夹可以通过秘钥分享，其他只能通过连接或者二维码的方式分享。
 
 2. 设置共享文件夹属性
  * 普通文件夹属性：
-      
+
       + 链接分享
-		![](http://ww1.sinaimg.cn/large/91ddf859gy1fcgrmc303bj20le0htdh6)
+        ![](http://ww1.sinaimg.cn/large/91ddf859gy1fcgrmc303bj20le0htdh6)
       + 二维码分享
-		![](http://ww1.sinaimg.cn/large/91ddf859gy1fcgsejx39aj20le0htwfp)
+        ![](http://ww1.sinaimg.cn/large/91ddf859gy1fcgsejx39aj20le0htwfp)
  * 加密文件夹属性：
- 	![](http://ww1.sinaimg.cn/large/91ddf859gy1fcgsi2w7mfj20le0htwfy)
+    ![](http://ww1.sinaimg.cn/large/91ddf859gy1fcgsi2w7mfj20le0htwfy)
 
 ## 下载文件
 1. 点击“输入秘钥或链接”
-	![](http://ww1.sinaimg.cn/large/91ddf859gy1fcgrygzsz6j20le0htq4q)
+  ![](http://ww1.sinaimg.cn/large/91ddf859gy1fcgrygzsz6j20le0htq4q)
 2. 输入相应秘钥或链接
-	![](http://ww1.sinaimg.cn/large/91ddf859gy1fcgsko7ehtj20le0ht3zi)
+  ![](http://ww1.sinaimg.cn/large/91ddf859gy1fcgsko7ehtj20le0ht3zi)
 
 
-	
+​	
