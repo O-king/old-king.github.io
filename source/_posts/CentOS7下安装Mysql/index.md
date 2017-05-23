@@ -20,7 +20,7 @@ yum install mysql-community-server
 ## 重启mysql服务
 
 ```shell
-service mysqld restart
+systemctl start mysqld
 ```
 
 ​
