@@ -5,7 +5,7 @@ categories: [SpringMVC]
 tags: [SpringMVC源码分析]
 ---
 ![](http://ww1.sinaimg.cn/large/91ddf859gy1ffxpu07otbj20go07r749.jpg)
-本文将分析SpringMVC的核心分发器DispatcherServlet的初始化过程以及处理请求的过程，让读者了解这个入口Servlet的作用。
+本文将分析SpringMVC的核心分发器DispatcherServlet的初始化过程，让读者了解这个入口Servlet的作用。
 
 ## SpringMVC配置
 1. 指明Servlet，在配置文件web.xml中如下配置：	
