@@ -1,9 +1,8 @@
 ---
-title: CentOS7下安装Mysql
+title: Mysql数据库软件安装与配置
 date: 2017-04-19 10:25:45
-tags: [软件安装]
+tags: [Mysql]
 ---
-# Mysql数据库软件安装与配置
 
 ## centos7下快速安装mysql
 

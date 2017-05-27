@@ -1,11 +1,11 @@
 ---
 title: Git操作说明---回滚文件
 date: 2017-05-18 18:31:23
-categories: Technology
+categories: [Git]
 tags: [Git]
 ---
 
-![](http://git-scm.com/images/logo@2x.png)
+![](http://ww1.sinaimg.cn/large/91ddf859gy1ffwerjv3qyj20hy0b4jrr.jpg)
 
 ## 本文将记录Git使用过程中回滚文件的操作说明。
 

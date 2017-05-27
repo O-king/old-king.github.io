@@ -1,10 +1,10 @@
 ---
 title: SpringMVC源码分析--核心分发器DispatcherServlet（初始化）
 date: 2017-05-17 18:31:23
-categories: Technology
+categories: [SpringMVC]
 tags: [SpringMVC源码分析]
 ---
-![](http://ww1.sinaimg.cn/large/91ddf859gy1ffubaw9xlaj206y024dfp.jpg)
+![](http://ww1.sinaimg.cn/large/91ddf859gy1ffxpu07otbj20go07r749.jpg)
 本文将分析SpringMVC的核心分发器DispatcherServlet的初始化过程以及处理请求的过程，让读者了解这个入口Servlet的作用。
 
 ## SpringMVC配置
