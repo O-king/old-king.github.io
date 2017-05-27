@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Stay hungry. Stay foolish"><title>Git操作说明---回滚文件 | OKing's Blog</title><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Git操作说明---回滚文件</h1><a id="logo" href="/.">OKing's Blog</a><p class="description">Stay hungry. Stay foolish</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Git操作说明---回滚文件</h1><div class="post-meta">May 18, 2017<span> | </span><span class="category"><a href="/categories/Git/">Git</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><p><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffwerjv3qyj20hy0b4jrr.jpg" alt=""></p>
+<h2 id="本文将记录Git使用过程中回滚文件的操作说明。"><a href="#本文将记录Git使用过程中回滚文件的操作说明。" class="headerlink" title="本文将记录Git使用过程中回滚文件的操作说明。"></a>本文将记录Git使用过程中回滚文件的操作说明。</h2><h2 id="情况假设"><a href="#情况假设" class="headerlink" title="情况假设"></a>情况假设</h2><ol>
+<li>改完代码匆忙提交,上线发现有问题,怎么办? 赶紧回滚.</li>
+<li>改完代码测试也没有问题,但是上线发现你的修改影响了之前运行正常的代码报错,必须回滚.</li>
+</ol>
+<p><strong>这些开发中很常见的问题,所以git的取消提交,回退甚至返回上一版本都是特别重要的.</strong></p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><ol>
+<li><p><strong>没有commit到本地仓库</strong></p>
+<pre><code>git checkout fileName
+</code></pre><p> 命令执行过后，文件会恢复到上次commit后的内容</p>
+<p> <strong>小结：</strong></p>
+<ul>
+<li>git checkout file1 （回滚单个文件）</li>
+<li>git checkout file1 file2 … fileN （一次回滚多个文件，中间用空格隔开即可）</li>
+<li>git checkout . （直接回滚当前目录一下的所有working tree内的修改，会递归扫描当前目录下的所有子目录）</li>
+</ul>
+</li>
+<li><p><strong>已经commit到本地仓库</strong></p>
+<ol>
+<li>查看提交记录<br> <img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffpbxiuph0j20b102vq2w.jpg" alt=""></li>
+<li><p>执行回滚操作</p>
+<ul>
+<li>命令说明  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset [--soft | --mixed | --hard]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li><p>--soft         </p>
+<pre><code>保留源码,只回退到commit 信息到某个版本.不涉及index的回退,如果还需要提交,直接commit即可.
+</code></pre><p> <img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffpc6lxk5yj20gz0az75b.jpg" alt=""></p>
+<p><strong>本地仓库版本已经回退到选择的版本号,该文件已经处于暂存区，只需要执行commit命令，就可提交到工作区</strong></p>
+</li>
+<li><p>-- mixed</p>
+<pre><code>会保留源码,只是将git commit和index 信息回退到了某个版本.
+</code></pre> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git reset 默认是 --mixed 模式 </div><div class="line">git reset --mixed  等价于  git reset</div></pre></td></tr></table></figure>
+<p> <img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffpci3ohgoj20hi04iq2y.jpg" alt=""></p>
+<p><strong>本地仓库版本已经回退到选择的版本号,该文件不在暂存区，还需要执行add、commit命令，就可提交到工作区</strong></p>
+</li>
+<li><p>--hard         </p>
+<pre><code>源码也会回退到某个版本,commit和index 都回回退到某个版本.(注意,这种方式是改变本地代码仓库源码)
+</code></pre><p> <img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffpcod2n0bj209k03q744.jpg" alt=""></p>
+<p><strong>本地仓库版本已经回退到选择的版本号,该文件同时也恢复到该版本号的内容</strong></p>
+</li>
+</ol>
+<p><strong>小结：</strong>    </p>
+</li>
+</ol>
+<ul>
+<li>HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset –hard commit_id。</li>
+<li>穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。</li>
+<li>要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。        </li>
+</ul>
+</li>
+<li><p><strong>已经push到远程仓库</strong></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git revert HEAD                     //撤销最近一次提交</div><div class="line">git revert HEAD~1                   //撤销上上次的提交，注意：数字从0开始</div><div class="line">git revert 0ffaacc                  //撤销0ffaacc这次提交</div></pre></td></tr></table></figure>
+<p> <strong>小结：</strong></p>
+<ul>
+<li>revert 是撤销一次提交，所以后面的commit id是你需要回滚到的版本的前一次提交        </li>
+<li>使用revert HEAD是撤销最近的一次提交，如果你最近一次提交是用revert命令产生的，那么你再执行一次，就相当于撤销了上次的撤销操作，换句话说，你连续执行两次revert HEAD命令，就跟没执行是一样的        </li>
+<li>使用revert HEAD~1 表示撤销最近2次提交，这个数字是从0开始的，如果你之前撤销过产生了commi id，那么也会计算在内的。    </li>
+<li>如果使用 revert 撤销的不是最近一次提交，那么一定会有代码冲突，需要你合并代码，合并代码只需要把当前的代码全部去掉，保留之前版本的代码就可以了.</li>
+</ul>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git checkout file  			//回退没有commit的文件，多个文件以空格隔开，本目录用.表示,会递归回退本级目录以及所有子目录</div><div class="line">git reset commitId			//回退工作区文件，版本号会回退</div><div class="line">git revert commitId			//回退远程仓库，会产生新的版本号</div></pre></td></tr></table></figure>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://oking.me/2017/05/18/Git操作说明/Git撤销操作说明/" data-id="cj36zrcwy0007s4vegyk25kss" class="article-share-link">分享到</a><div class="tags"><a href="/tags/Git/">Git</a></div><div class="post-nav"><a href="/2017/05/24/Mysql/Mysql的Master-Slave主从复制配置/" class="pre">Mysql的Master-Slave主从复制配置</a><a href="/2017/05/17/SpringMVC源码分析/SpringMVC源码分析-核心分发器DispatcherServlet（初始化）/" class="next">SpringMVC源码分析--核心分发器DispatcherServlet（初始化）</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="http://oking.me"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CentOS/">CentOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Maven/">Maven</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMVC/">SpringMVC</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/挂载硬盘/" style="font-size: 15px;">挂载硬盘</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Maven/" style="font-size: 15px;">Maven</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/SpringMVC源码分析/" style="font-size: 15px;">SpringMVC源码分析</a> <a href="/tags/工具/" style="font-size: 15px;">工具</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/05/27/SpringMVC源码分析/SpringMVC源码分析-核心分发器DispatcherServlet（请求转发）/">SpringMVC源码分析--核心分发器DispatcherServlet（请求转发）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/25/CentOS/CentOS挂载硬盘操作说明/">CentOS挂载硬盘操作说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/24/Mysql/Mysql的Master-Slave主从复制配置/">Mysql的Master-Slave主从复制配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/18/Git操作说明/Git撤销操作说明/">Git操作说明---回滚文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/17/SpringMVC源码分析/SpringMVC源码分析-核心分发器DispatcherServlet（初始化）/">SpringMVC源码分析--核心分发器DispatcherServlet（初始化）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/17/Maven/多模块工程的打包/">多模块工程的打包命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/19/Mysql/Mysql数据库软件安装与配置/">Mysql数据库软件安装与配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/06/共享工具/sync/">resilio sync共享工具</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><div class="song"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="https://music.163.com/outchain/player?type=2&id=29764473&auto=1&height=32"></iframe></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">OKing's Blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
