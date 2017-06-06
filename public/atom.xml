@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>OKing&#39;s Blog</title>
+  <subtitle>Stay hungry. Stay foolish</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://oking.me/"/>
+  <updated>2017-06-02T03:34:52.575Z</updated>
+  <id>http://oking.me/</id>
+  
+  <author>
+    <name>OKing</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CentOS7安装Memcached</title>
+    <link href="http://oking.me/2017/06/02/%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93/CentOS7%E5%AE%89%E8%A3%85Memcached/"/>
+    <id>http://oking.me/2017/06/02/内存数据库/CentOS7安装Memcached/</id>
+    <published>2017-06-02T03:02:56.000Z</published>
+    <updated>2017-06-02T03:34:52.575Z</updated>
+    
+    <content type="html"><![CDATA[<ol>
+<li><p>#查找Memcached</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum search memcached</div></pre></td></tr></table></figure>
+</li>
+<li><p>#安装Memcached</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install memcached</div></pre></td></tr></table></figure>
+</li>
+<li><p>#验证安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">memcached -h</div></pre></td></tr></table></figure>
+</li>
+<li><p>#查看配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /etc/sysconfig/memcached</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>可以根据情况修改相关配置参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">PORT=&quot;11211&quot;</div><div class="line">USER=&quot;memcached&quot;</div><div class="line">MAXCONN=&quot;1024&quot;</div><div class="line">CACHESIZE=&quot;64&quot;</div><div class="line">OPTIONS=&quot;&quot;</div></pre></td></tr></table></figure></p>
+<ol>
+<li><p>#memcached命令</p>
+<ol>
+<li><p>启动命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl start memcache</div></pre></td></tr></table></figure>
+</li>
+<li><p>停止命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl stop memcache</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看状态命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl status memcache</div></pre></td></tr></table></figure>
+</li>
+<li><p>开机自动启动命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl enable memcached.service</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;&lt;p&gt;#查找Memcached&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td clas
+    
+    </summary>
+    
+      <category term="内存数据库" scheme="http://oking.me/categories/%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="Memcache" scheme="http://oking.me/tags/Memcache/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringMVC源码分析--核心分发器DispatcherServlet（请求转发）</title>
+    <link href="http://oking.me/2017/05/27/SpringMVC%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/SpringMVC%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E6%A0%B8%E5%BF%83%E5%88%86%E5%8F%91%E5%99%A8DispatcherServlet%EF%BC%88%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%EF%BC%89/"/>
+    <id>http://oking.me/2017/05/27/SpringMVC源码分析/SpringMVC源码分析-核心分发器DispatcherServlet（请求转发）/</id>
+    <published>2017-05-27T06:15:02.000Z</published>
+    <updated>2017-05-27T07:59:38.281Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffxpu07otbj20go07r749.jpg" alt=""><br>本文将分析SpringMVC的核心分发器DispatcherServlet的处理请求的过程，让读者了解SpringMVC是如何处理请求的。</p>
+<p>原生的Servlet 生命周期可被定义为从创建直到毁灭的整个过程。<br>以下是 Servlet 遵循的过程：</p>
+<ol>
+<li>Servlet 通过调用 init () 方法进行初始化。</li>
+<li>Servlet 调用 service() 方法来处理客户端的请求。</li>
+<li>Servlet 通过调用 destroy() 方法终止（结束）。</li>
+</ol>
+<p>最后，Servlet 是由 JVM 的垃圾回收器进行垃圾回收的。</p>
+<p>SpringMVC的处理方式是基于Servlet的，所以也跳不出这个圈子。</p>
+<h2 id="SpringMVC请求流程图"><a href="#SpringMVC请求流程图" class="headerlink" title="SpringMVC请求流程图"></a>SpringMVC请求流程图</h2><p><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffzwfp78swj20nw0badgy.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffzylyzsszj212e0iqmxs.jpg" alt=""><br>SpringMVC核心处理流程：</p>
+<ol>
+<li><p>DispatcherServlet前端控制器接收发过来的请求，交给HandlerMapping处理器映射器</p>
+</li>
+<li><p>HandlerMapping处理器映射器，根据请求路径找到相应的HandlerAdapter处理器适配器（处理器适配器就是那些拦截器或Controller）</p>
+</li>
+<li><p>HandlerAdapter处理器适配器，处理一些功能请求，返回一个ModelAndView对象（包括模型数据、逻辑视图名）</p>
+</li>
+<li><p>ViewResolver视图解析器，先根据ModelAndView中设置的View解析具体视图</p>
+</li>
+<li><p>然后再将Model模型中的数据渲染到View上</p>
+</li>
+</ol>
+<p>这些过程都是以DispatcherServlet为中轴线进行的.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/91ddf859gy1ffxpu07otbj20go07r749.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;本文将分析SpringMVC的核心分发器DispatcherServlet的处理请求的过程，让读者了
+    
+    </summary>
+    
+      <category term="SpringMVC" scheme="http://oking.me/categories/SpringMVC/"/>
+    
+    
+      <category term="SpringMVC源码分析" scheme="http://oking.me/tags/SpringMVC%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CentOS挂载硬盘操作说明</title>
+    <link href="http://oking.me/2017/05/25/CentOS/CentOS%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8E/"/>
+    <id>http://oking.me/2017/05/25/CentOS/CentOS挂载硬盘操作说明/</id>
+    <published>2017-05-25T08:15:10.000Z</published>
+    <updated>2017-05-27T06:11:44.650Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffxpsafg20j20sg0jqgmg.jpg" alt=""></p>
+<p>在 Linux 中，为磁盘分区通常使用 fdisk 和 parted 命令。通常情况下，使用 fdisk 可以满足日常的使用，但是它仅仅支持 2 TB 以下磁盘的分区，超出 2 TB 部分无法识别。</p>
+<p>而随着科技的进步，大容量硬盘已经步入我们的生活，10 TB 的 HDD、16 TB 的 SSD 也已面世，仅仅能识别 2 TB 的 fdisk 很明显无法满足需求了，于是乎，parted &amp; GPT 磁盘成为了绝佳的搭配。</p>
+<h2 id="查看磁盘信息"><a href="#查看磁盘信息" class="headerlink" title="查看磁盘信息"></a>查看磁盘信息</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fdisk -l</div></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffxojv7q0kj20hm0g5gm8.jpg" alt=""></p>
+<p>从图可以看出 <strong>/dev/sdb</strong>这一块硬盘还没有被挂载。</p>
+<h2 id="分区操作"><a href="#分区操作" class="headerlink" title="分区操作"></a>分区操作</h2><h3 id="2T以下容量的硬盘（血的教训）"><a href="#2T以下容量的硬盘（血的教训）" class="headerlink" title="2T以下容量的硬盘（血的教训）"></a>2T以下容量的硬盘（血的教训）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fdisk /dev/sdb</div></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffxonjnh16j20eq03ndfp.jpg" alt=""></p>
+<p>对<strong>/dev/sdb</strong>这一块硬盘进行分区操作</p>
+<ol>
+<li><p>进入fdisk命令后，输入<strong>m</strong>查看操作提示：<br><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffxoou2af5j20b709h0su.jpg" alt=""></p>
+</li>
+<li><p>输入<strong>n</strong>,进入分区操作<br><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffxopp0oj7j20bd02i0sj.jpg" alt=""></p>
+</li>
+<li><p>选择分区类型,默认为主分区，输入<strong>p</strong>，或者回车；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">p: 分为主分区</div><div class="line">e: 分为逻辑分区</div></pre></td></tr></table></figure>
+</li>
+<li><p>选择分区数，分区数在[1-4]之间，默认为：<strong>1</strong>,回车选择默认；<br><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffxotzy420j208e01amwx.jpg" alt=""></p>
+</li>
+<li><p>选择该分区的起始磁盘数，默认为磁盘最开始的磁盘数，若无相关要求，最好使用默认的起始数。回车选择默认数；<br><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffxoxefllkj20bg00tdfl.jpg" alt=""></p>
+</li>
+<li>选择该分区结束磁盘数或者该分区容量大小，默认为磁盘全部容量。回车选择默认数（磁盘最大容量）;<br><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffxoxjveo5j20gu0120si.jpg" alt=""></li>
+<li>写入分区，输入<strong>w</strong>,等待分区操作结束<br><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffxoyqyb1pj20ad02b0sj.jpg" alt=""></li>
+<li>分区操作结束。</li>
+</ol>
+<h3 id="2T以上容量的硬盘"><a href="#2T以上容量的硬盘" class="headerlink" title="2T以上容量的硬盘"></a>2T以上容量的硬盘</h3><ol>
+<li><p>首先类似<strong>fdisk</strong>一样，先选择要分区的硬盘，此处为<strong>/dev/sdb</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@10.10.90.97 ~]# parted /dev/sdb</div><div class="line">GNU Parted 1.8.1</div><div class="line">Using /dev/sdb</div><div class="line">Welcome to GNU Parted! Type &apos;help&apos; to view a list of commands.</div></pre></td></tr></table></figure>
+</li>
+<li><p>选择了<strong>/dev/sdb</strong>作为我们操作的磁盘，接下来需要创建一个分区表(在<strong>parted</strong>中可以使用<strong>help</strong>命令打印帮助信息)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(parted) mklabel</div><div class="line">Warning: The existing disk label on /dev/sdb will be destroyed and all data on this disk will be lost. Do you want to continue?</div><div class="line">Yes/No?(警告用户磁盘上的数据将会被销毁，询问是否继续，我们这里是新的磁盘，输入yes后回车) yes</div><div class="line">New disk label type? [msdos]? (默认为msdos形式的分区，我们要正确分区大于2TB的磁盘，应该使用gpt方式的分区表，输入gpt后回车)gpt</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建好分区表以后，接下来就可以进行分区操作了，执行<strong>mkpart</strong>命令，分别输入分区名称，文件系统和分区的起止位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(parted) mkpart</div><div class="line">Partition name? []? dp1</div><div class="line">File system type? [ext2]? ext3</div><div class="line">Start? 0</div><div class="line">End? 500GB</div></pre></td></tr></table></figure>
+</li>
+<li><p>分好区后可以使用<strong>print</strong>命令打印分区信息，下面是一个<strong>print</strong>的样例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">(parted) print</div><div class="line">Model: VBOX HARDDISK (ide)</div><div class="line">Disk /dev/sdb: 2199GB</div><div class="line">Sector size (logical/physical): 512B/512B</div><div class="line">Partition Table: gpt</div><div class="line">Number Start End Size File system Name Flags</div><div class="line">1 17.4kB 500GB 500GB dp1</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果分区错了，可以使用<strong>rm</strong>命令删除分区，比如我们要删除上面的分区，然后打印删除后的结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">(parted)rm 1 #rm后面使用分区的号码</div><div class="line">(parted) print</div><div class="line">Model: VBOX HARDDISK (ide)</div><div class="line">Disk /dev/sdb: 2199GB</div><div class="line">Sector size (logical/physical): 512B/512B</div><div class="line">Partition Table: gpt</div><div class="line">Number Start End Size File system Name Flags</div></pre></td></tr></table></figure>
+</li>
+<li><p>按照上面的方法把整个硬盘都分好区，下面是一个分完后的样例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">(parted) mkpart</div><div class="line">Partition name? []? dp1</div><div class="line">File system type? [ext2]? ext3</div><div class="line">Start? 0</div><div class="line">End? 500GB</div><div class="line">(parted) mkpart</div><div class="line">Partition name? []? dp2</div><div class="line">File system type? [ext2]? ext3</div><div class="line">Start? 500GB</div><div class="line">End? 2199GB</div><div class="line">(parted) print</div><div class="line">Model: VBOX HARDDISK (ide)</div><div class="line">Disk /dev/sdb: 2199GB</div><div class="line">Sector size (logical/physical): 512B/512B</div><div class="line">Partition Table: gpt</div><div class="line">Number Start End Size File system Name Flags</div><div class="line">1 17.4kB 500GB 500GB dp1</div><div class="line">2 500GB 2199GB 1699GB dp2</div></pre></td></tr></table></figure>
+</li>
+<li><p>由于<strong>parted</strong>内建的<strong>mkfs</strong>还不够完善，所以完成以后我们可以使用<strong>quit</strong>命令退出<strong>parted</strong>并使用 系统的<strong>mkfs</strong>命令对分区进行格式化了，此时如果使用<strong>fdisk -l</strong>命令打印分区表会出现警告信息，这是正常的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@10.10.90.97 ~]# fdisk -l</div><div class="line">WARNING: GPT (GUID Partition Table) detected on &apos;/dev/sdb&apos;! The util fdisk doesn&apos;t support GPT. Use GNU Parted.</div><div class="line">Disk /dev/sdb: 2199.0 GB, 2199022206976 bytes</div><div class="line">255 heads, 63 sectors/track, 267349 cylinders</div><div class="line">Units = cylinders of 16065 * 512 = 8225280 bytes</div><div class="line">Device Boot Start End Blocks Id System</div><div class="line">/dev/sdb1 1 267350 2147482623+ ee EFI GPT</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="格式化分区"><a href="#格式化分区" class="headerlink" title="格式化分区"></a>格式化分区</h2><ol>
+<li>查看磁盘信息<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fdisk -l</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffxp0pv7wfj20fq0gp74x.jpg" alt=""><br>从图可以看出，刚才的分区操作成功，新的分区名为<strong>/dev/sdb1</strong></p>
+<ol>
+<li>格式化分区<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkfs -t ext3 -c /dev/sdb1</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>上面这条命令执行速度比较慢，如果想象<strong>Windows</strong>的<strong>快速格式化</strong>操作的话，可以使用下面的命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkfs ext3  -T largefile /dev/sdb1</div></pre></td></tr></table></figure></p>
+<p><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffxp6kawtuj20fz0a60sz.jpg" alt=""></p>
+<ol>
+<li>格式化完毕！</li>
+</ol>
+<h2 id="挂载分区"><a href="#挂载分区" class="headerlink" title="挂载分区"></a>挂载分区</h2><ol>
+<li>挂载分区<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mount /dev/sdb1 /data</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffxp8g8o3lj20ab01tmwz.jpg" alt=""><br>将刚才的分区挂载到根目录下的<strong>data</strong>目录下，<br>由于<strong>data</strong>目录不存在，所以第一次挂载失败。<br>创建目录后，再次执行挂载命令，最后挂在成功！</p>
+<ol>
+<li>查看系统磁盘信息<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df -TH</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffxpbab8kuj20dm04qweh.jpg" alt=""><br>上图显示，<strong>/dev/sdb1</strong>2T容量成功挂载到<strong>/data</strong>目录上。</p>
+<p>到此为此，挂载操作完美成功。但是如果系统重启后，本次挂载的磁盘就会失效。这是因为没有将挂载的信息告诉系统。</p>
+<h2 id="永久挂载"><a href="#永久挂载" class="headerlink" title="永久挂载"></a>永久挂载</h2><p>系统的<strong>/etc/fstab</strong>文件负责记录磁盘挂载信息，所以必须将本次的挂载内容写入到该文件中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">磁盘分区    mount目录     文件格式</div><div class="line">/dev/sdb1  /data         ext3        defaults    0   0</div></pre></td></tr></table></figure></p>
+<p><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffzw5fdg6yj20jq05swei.jpg" alt=""></p>
+<p>输入<strong>wq</strong>,完成修改保存操作。</p>
+<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips:"></a>Tips:</h3><p>fstab中，每条配置信息都分为固定的6个部分<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[1]:分区路径，或者UUID</div><div class="line">[2]:fs_file - 该字段描述希望的文件系统加载的目录点，对于swap设备，该字段为none；对于加载目录名包含空格的情况，用40来表示空格。</div><div class="line">[3]:fs_type - 定义了该设备上的文件系统，一般常见的文件类型为ext4 (Linux设备的常用文件类型)、vfat(Windows系统的fat32格式)、NTFS、isoArray600等。在不确定的情况下可以使用auto。</div><div class="line">[4]:fs_options - 指定加载该设备的文件系统是需要使用的特定参数选项，多个参数是由逗号分隔开来.对于大多数系统使用&quot;defaults&quot;就可以满足需要。不多说。</div><div class="line">[5]:fs_dump  - 该选项被&quot;dump&quot;命令使用来检查一个文件系统应该以多快频率进行转储，若不需要转储就设置该字段为0</div><div class="line">[6]:fs_pass - 该字段被fsck命令用来决定在启动时需要被扫描的文件系统的顺序，根文件系统&quot;/&quot;对应该字段的值应该为1，其他文件系统应该为2。若该文件系统无需在启动时扫描则设置该字段为0</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1. 分区操作                 fdisk /dev/xxx</div><div class="line">2. 格式化分区                mkfs -t ext3 -c /dev/xxx</div><div class="line">3. 挂载分区                  mount /dev/xxx /xxx</div><div class="line">4. 写入系统文件              vim /etc/fstab</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/91ddf859gy1ffxpsafg20j20sg0jqgmg.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在 Linux 中，为磁盘分区通常使用 fdisk 和 parted 命令。通常情况下，使用
+    
+    </summary>
+    
+      <category term="CentOS" scheme="http://oking.me/categories/CentOS/"/>
+    
+    
+      <category term="挂载硬盘" scheme="http://oking.me/tags/%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mysql的Master-Slave主从复制配置</title>
+    <link href="http://oking.me/2017/05/24/Mysql/Mysql%E7%9A%84Master-Slave%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E9%85%8D%E7%BD%AE/"/>
+    <id>http://oking.me/2017/05/24/Mysql/Mysql的Master-Slave主从复制配置/</id>
+    <published>2017-05-24T01:53:04.000Z</published>
+    <updated>2017-05-27T05:44:47.547Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffzvdjnuohj20d206yjrc.jpg" alt=""><br>今天来说一下Mysql的主从复制配置方面的事情。</p>
+<p>手上有两台服务器，信息如下：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>IP</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Master</strong></td>
+<td>192.168.0.1</td>
+<td>主服务器</td>
+</tr>
+<tr>
+<td><strong>Slave</strong></td>
+<td>192.168.0.2</td>
+<td>节点服务器</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Master-Slave主从配置"><a href="#Master-Slave主从配置" class="headerlink" title="Master-Slave主从配置"></a>Master-Slave主从配置</h2><ol>
+<li><p><strong>主服务器配置</strong><br>编辑Mysql配置文件：<br><strong> vi /usr/my.cnf</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[mysqld]</div><div class="line">log-bin=mysql-bin   //[必须]启用二进制日志</div><div class="line">server-id=1      //[必须]服务器唯一ID，默认是1，一般取IP最后一段</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>从服务器配置</strong><br>编辑Mysql配置文件：<br><strong> vi /usr/my.cnf</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[mysqld]</div><div class="line">log-bin=mysql-bin   //[不是必须]启用二进制日志</div><div class="line">server-id=2      //[必须]服务器唯一ID，默认是1，一般取IP最后一段</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>重启两台Mysql服务</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/mysql restart</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>在主服务器上建立账户并授权Slave</strong></p>
+<ol>
+<li><p>连接服务器</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -uroot -p默认密码</div></pre></td></tr></table></figure>
+</li>
+<li><p>建立账户</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GRANT REPLICATION SLAVE ON *.* to &apos;repl_user&apos;@&apos;%&apos; identified by &apos;repl_user&apos;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>锁表操作</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">flush tables with read lock;</div></pre></td></tr></table></figure>
+<p> <img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffzqtpjznuj207q019we9.jpg" alt=""></p>
+</li>
+<li><p>查询Master的状态</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show master status;</div></pre></td></tr></table></figure>
+<p> <img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffzqqj39gdj20i4038glg.jpg" alt=""></p>
+</li>
+</ol>
+</li>
+<li><p><strong>配置从服务器</strong></p>
+<ol>
+<li><p>配置Master信息</p>
+<pre><code>change master to
+    master_host=&apos;192.168.0.1&apos;,          //Master服务器IP
+    master_user=&apos;repl_user&apos;,            //Master连接用户名，必须具备Slave权限
+    master_password=&apos;repl_user&apos;,        //Master连接用户密码，必须具备Slave权限
+    master_log_file=&apos;mysql-bin.000010&apos;, //数据库二进制日志文件名，Master服务器 Show master status命令输出的文件名
+    master_log_pos=0;                   //数据库二进制日志文件开始位置
+</code></pre></li>
+<li><p>检查Slave状态        </p>
+<pre><code>show slave status \G;
+</code></pre><p> <img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffzr3bwk7lj20f006474a.jpg" alt=""> </p>
+<p> <strong>注意</strong>： 这样标识从服务器配置成功                </p>
+<pre><code>Slave_IO_Running:Yes
+Slave_SQL_Running:Yes           
+</code></pre></li>
+</ol>
+</li>
+<li><p><strong>解除Master的锁表状态</strong></p>
+<pre><code>UNLOCK TABLES;
+</code></pre></li>
+</ol>
+<h2 id="Master-Master主主配置"><a href="#Master-Master主主配置" class="headerlink" title="Master-Master主主配置"></a>Master-Master主主配置</h2><p>上面已经完成了Master_Slave的配置操作，主主（双主）就是将上面的操作反过来重新操作一次。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">第一次的主机变为从机，</div><div class="line">第一次的从机变为主机。</div></pre></td></tr></table></figure></p>
+<p>Mysql配置文件如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">server_id = 2                                    //服务器id，在集群中此id不可重复</div><div class="line">log-bin= mysql-bin                               //开启二进制日志文件</div><div class="line">binlog_format = mixed                            //日志记录方式</div><div class="line">expire_logs_days        = 7                      //binlog过期清理时间</div><div class="line">max_binlog_size         = 100m                   //binlog每个日志文件大小    </div><div class="line">binlog_cache_size       = 4m                     //binlog缓存大小   </div><div class="line">max_binlog_cache_size   = 512m                   //最大binlog缓存大小  </div><div class="line">log-slave-updates=on                             //该服务器既作为从库，又作为主库的时候，必须开启，否则它的从库无法获得二进制日志    </div><div class="line"></div><div class="line">replicate_wild_ignore_table=mysql.%              //忽略mysql库的sql语句</div><div class="line"></div><div class="line">auto-increment-offset=2                          //自增主键从1开始计数 </div><div class="line">auto-increment-increment=2                       //自增主键每次加2</div></pre></td></tr></table></figure></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li><p>Mysql的主从复制，必须开启二进制日志记录功能，也就是在配置文件中加入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">server_id = 2                                    //服务器id，在集群中此id不可重复</div><div class="line">log-bin= mysql-bin                               //开启二进制日志文件</div></pre></td></tr></table></figure>
+</li>
+<li><p>主从复制失败</p>
+<ol>
+<li><p>查看Master服务器状态<br> <img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffzqqj39gdj20i4038glg.jpg" alt="">  </p>
+</li>
+<li><p>查看Slave服务器状态<br> <img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffzr3bwk7lj20f006474a.jpg" alt=""><br> 两个的二进制日志文件要相同，如果不同    </p>
+<ol>
+<li>重置Master服务器二进制日志文件<pre><code>reset master; 
+</code></pre></li>
+<li>配置Slave服务器的Master连接信息<pre><code>change master to
+    master_host=&apos;192.168.0.1&apos;,          //Master服务器IP
+    master_user=&apos;repl_user&apos;,            //Master连接用户名，必须具备Slave权限
+    master_password=&apos;repl_user&apos;,        //Master连接用户密码，必须具备Slave权限
+    master_log_file=&apos;mysql-bin.000010&apos;, //数据库二进制日志文件名，Master服务器 Show master status命令输出的文件名
+    master_log_pos=0;                   //数据库二进制日志文件开始位置            
+</code></pre></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>主主复制，如果采用的是主键自增模式话，注意两台服务器的自增策略不能相同，以免同步的时候发生主键重复<br>修改Mysql配置文件：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">auto-increment-offset=2                          //自增主键从1开始计数 </div><div class="line">auto-increment-increment=2                       //自增主键每次加2</div></pre></td></tr></table></figure>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/91ddf859gy1ffzvdjnuohj20d206yjrc.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;今天来说一下Mysql的主从复制配置方面的事情。&lt;/p&gt;
+&lt;p&gt;手上有两台服务器，信息如下：&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Mysql" scheme="http://oking.me/categories/Mysql/"/>
+    
+    
+      <category term="Mysql" scheme="http://oking.me/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git操作说明---回滚文件</title>
+    <link href="http://oking.me/2017/05/18/Git%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8E/Git%E6%92%A4%E9%94%80%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8E/"/>
+    <id>http://oking.me/2017/05/18/Git操作说明/Git撤销操作说明/</id>
+    <published>2017-05-18T10:31:23.000Z</published>
+    <updated>2017-05-24T05:53:44.457Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffwerjv3qyj20hy0b4jrr.jpg" alt=""></p>
+<h2 id="本文将记录Git使用过程中回滚文件的操作说明。"><a href="#本文将记录Git使用过程中回滚文件的操作说明。" class="headerlink" title="本文将记录Git使用过程中回滚文件的操作说明。"></a>本文将记录Git使用过程中回滚文件的操作说明。</h2><h2 id="情况假设"><a href="#情况假设" class="headerlink" title="情况假设"></a>情况假设</h2><ol>
+<li>改完代码匆忙提交,上线发现有问题,怎么办? 赶紧回滚.</li>
+<li>改完代码测试也没有问题,但是上线发现你的修改影响了之前运行正常的代码报错,必须回滚.</li>
+</ol>
+<p><strong>这些开发中很常见的问题,所以git的取消提交,回退甚至返回上一版本都是特别重要的.</strong></p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><ol>
+<li><p><strong>没有commit到本地仓库</strong></p>
+<pre><code>git checkout fileName
+</code></pre><p> 命令执行过后，文件会恢复到上次commit后的内容</p>
+<p> <strong>小结：</strong></p>
+<ul>
+<li>git checkout file1 （回滚单个文件）</li>
+<li>git checkout file1 file2 … fileN （一次回滚多个文件，中间用空格隔开即可）</li>
+<li>git checkout . （直接回滚当前目录一下的所有working tree内的修改，会递归扫描当前目录下的所有子目录）</li>
+</ul>
+</li>
+<li><p><strong>已经commit到本地仓库</strong></p>
+<ol>
+<li>查看提交记录<br> <img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffpbxiuph0j20b102vq2w.jpg" alt=""></li>
+<li><p>执行回滚操作</p>
+<ul>
+<li>命令说明  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset [--soft | --mixed | --hard]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li><p>--soft         </p>
+<pre><code>保留源码,只回退到commit 信息到某个版本.不涉及index的回退,如果还需要提交,直接commit即可.
+</code></pre><p> <img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffpc6lxk5yj20gz0az75b.jpg" alt=""></p>
+<p><strong>本地仓库版本已经回退到选择的版本号,该文件已经处于暂存区，只需要执行commit命令，就可提交到工作区</strong></p>
+</li>
+<li><p>-- mixed</p>
+<pre><code>会保留源码,只是将git commit和index 信息回退到了某个版本.
+</code></pre> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git reset 默认是 --mixed 模式 </div><div class="line">git reset --mixed  等价于  git reset</div></pre></td></tr></table></figure>
+<p> <img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffpci3ohgoj20hi04iq2y.jpg" alt=""></p>
+<p><strong>本地仓库版本已经回退到选择的版本号,该文件不在暂存区，还需要执行add、commit命令，就可提交到工作区</strong></p>
+</li>
+<li><p>--hard         </p>
+<pre><code>源码也会回退到某个版本,commit和index 都回回退到某个版本.(注意,这种方式是改变本地代码仓库源码)
+</code></pre><p> <img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffpcod2n0bj209k03q744.jpg" alt=""></p>
+<p><strong>本地仓库版本已经回退到选择的版本号,该文件同时也恢复到该版本号的内容</strong></p>
+</li>
+</ol>
+<p><strong>小结：</strong>    </p>
+</li>
+</ol>
+<ul>
+<li>HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset –hard commit_id。</li>
+<li>穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。</li>
+<li>要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。        </li>
+</ul>
+</li>
+<li><p><strong>已经push到远程仓库</strong></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git revert HEAD                     //撤销最近一次提交</div><div class="line">git revert HEAD~1                   //撤销上上次的提交，注意：数字从0开始</div><div class="line">git revert 0ffaacc                  //撤销0ffaacc这次提交</div></pre></td></tr></table></figure>
+<p> <strong>小结：</strong></p>
+<ul>
+<li>revert 是撤销一次提交，所以后面的commit id是你需要回滚到的版本的前一次提交        </li>
+<li>使用revert HEAD是撤销最近的一次提交，如果你最近一次提交是用revert命令产生的，那么你再执行一次，就相当于撤销了上次的撤销操作，换句话说，你连续执行两次revert HEAD命令，就跟没执行是一样的        </li>
+<li>使用revert HEAD~1 表示撤销最近2次提交，这个数字是从0开始的，如果你之前撤销过产生了commi id，那么也会计算在内的。    </li>
+<li>如果使用 revert 撤销的不是最近一次提交，那么一定会有代码冲突，需要你合并代码，合并代码只需要把当前的代码全部去掉，保留之前版本的代码就可以了.</li>
+</ul>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git checkout file  			//回退没有commit的文件，多个文件以空格隔开，本目录用.表示,会递归回退本级目录以及所有子目录</div><div class="line">git reset commitId			//回退工作区文件，版本号会回退</div><div class="line">git revert commitId			//回退远程仓库，会产生新的版本号</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/91ddf859gy1ffwerjv3qyj20hy0b4jrr.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;本文将记录Git使用过程中回滚文件的操作说明。&quot;&gt;&lt;a href=&quot;#本文将记录G
+    
+    </summary>
+    
+      <category term="Git" scheme="http://oking.me/categories/Git/"/>
+    
+    
+      <category term="Git" scheme="http://oking.me/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringMVC源码分析--核心分发器DispatcherServlet（初始化）</title>
+    <link href="http://oking.me/2017/05/17/SpringMVC%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/SpringMVC%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E6%A0%B8%E5%BF%83%E5%88%86%E5%8F%91%E5%99%A8DispatcherServlet%EF%BC%88%E5%88%9D%E5%A7%8B%E5%8C%96%EF%BC%89/"/>
+    <id>http://oking.me/2017/05/17/SpringMVC源码分析/SpringMVC源码分析-核心分发器DispatcherServlet（初始化）/</id>
+    <published>2017-05-17T10:31:23.000Z</published>
+    <updated>2017-05-27T06:16:30.957Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffxpu07otbj20go07r749.jpg" alt=""><br>本文将分析SpringMVC的核心分发器DispatcherServlet的初始化过程，让读者了解这个入口Servlet的作用。</p>
+<h2 id="SpringMVC配置"><a href="#SpringMVC配置" class="headerlink" title="SpringMVC配置"></a>SpringMVC配置</h2><ol>
+<li>指明Servlet，在配置文件web.xml中如下配置：    <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- Spring MVC servlet --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springMVC<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath*:spring/spring-mvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springMVC<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>load-on-startup：表示启动容器时初始化该Servlet；<br>url-pattern：表示哪些请求交给Spring Web MVC处理， “/” 是用来定义默认servlet映射的。也可以如“*.html”表示拦截所有以html为扩展名的请求。</p>
+</blockquote>
+<ol>
+<li><p>配置SpringMVC信息 </p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.springmvc.example"</span>/&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 启动SpringMVC的注解功能，完成请求和注解POJO的映射 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 定义跳转的文件的前后缀，视图模式配置--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个可用的url地址 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/jsp/"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<p> 2.1. <strong>配置扫描路径</strong><br> 2.2. <strong>启用注解功能</strong><br> 2.3. <strong>视图配置信息：前缀和后缀</strong></p>
+</li>
+</ol>
+<p>至此，SpringMVC的简单配置已结束，下面让我们来具体看一下DispatcherServlet的源码。</p>
+<h2 id="SpringMVC初始化流程图"><a href="#SpringMVC初始化流程图" class="headerlink" title="SpringMVC初始化流程图"></a>SpringMVC初始化流程图</h2><p><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffoj4iu5rhj20qd0gddgi.jpg" alt=""></p>
+<h2 id="DispatcherServlet初始化流程分析"><a href="#DispatcherServlet初始化流程分析" class="headerlink" title="DispatcherServlet初始化流程分析"></a>DispatcherServlet初始化流程分析</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * This implementation calls &#123;<span class="doctag">@link</span> #initStrategies&#125;.</div><div class="line"> */</div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onRefresh</span><span class="params">(ApplicationContext context)</span> </span>&#123;</div><div class="line">	initStrategies(context);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Initialize the strategy objects that this servlet uses.</div><div class="line"> * &lt;p&gt;May be overridden in subclasses in order to initialize further strategy objects.</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initStrategies</span><span class="params">(ApplicationContext context)</span> </span>&#123;</div><div class="line">	initMultipartResolver(context);</div><div class="line">	initLocaleResolver(context);</div><div class="line">	initThemeResolver(context);</div><div class="line">	<span class="comment">//初始化请求地址</span></div><div class="line">	initHandlerMappings(context);</div><div class="line">	<span class="comment">//初始化请求解析器</span></div><div class="line">	initHandlerAdapters(context);</div><div class="line">	initHandlerExceptionResolvers(context);</div><div class="line">	initRequestToViewNameTranslator(context);</div><div class="line">	initViewResolvers(context);</div><div class="line">	initFlashMapManager(context);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>初始化流程在FrameworkServlet类中流转，建立了上下文后，通过<strong>onRefresh(ApplicationContext context)</strong>方法的回调，进入到DispatcherServlet类中。</p>
+<p>以其中<strong>initHandlerMappings(context)</strong>方法为例，分析一下这些SpringMVC编程元素的初始化策略，其他的方法，都是以类似的策略初始化的。</p>
+<h3 id="关键代码片段"><a href="#关键代码片段" class="headerlink" title="关键代码片段"></a>关键代码片段</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Create a List of default strategy objects for the given strategy interface.</div><div class="line"> * &lt;p&gt;The default implementation uses the "DispatcherServlet.properties" file (in the same</div><div class="line"> * package as the DispatcherServlet class) to determine the class names. It instantiates</div><div class="line"> * the strategy objects through the context's BeanFactory.</div><div class="line"> * <span class="doctag">@param</span> context the current WebApplicationContext</div><div class="line"> * <span class="doctag">@param</span> strategyInterface the strategy interface</div><div class="line"> * <span class="doctag">@return</span> the List of corresponding strategy objects</div><div class="line"> */</div><div class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line"><span class="keyword">protected</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">getDefaultStrategies</span><span class="params">(ApplicationContext context, Class&lt;T&gt; strategyInterface)</span> </span>&#123;</div><div class="line">	String key = strategyInterface.getName();</div><div class="line">	String value = defaultStrategies.getProperty(key);</div><div class="line">	<span class="keyword">if</span> (value != <span class="keyword">null</span>) &#123;</div><div class="line">		String[] classNames = StringUtils.commaDelimitedListToStringArray(value);</div><div class="line">		List&lt;T&gt; strategies = <span class="keyword">new</span> ArrayList&lt;T&gt;(classNames.length);</div><div class="line">		<span class="keyword">for</span> (String className : classNames) &#123;</div><div class="line">			<span class="keyword">try</span> &#123;</div><div class="line">				<span class="comment">//通过反射，得到传入参数的Class对象</span></div><div class="line">				Class&lt;?&gt; clazz = ClassUtils.forName(className, DispatcherServlet.class.getClassLoader());</div><div class="line">				<span class="comment">//关键</span></div><div class="line">				Object strategy = createDefaultStrategy(context, clazz);</div><div class="line">				strategies.add((T) strategy);</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">catch</span> (ClassNotFoundException ex) &#123;</div><div class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> BeanInitializationException(</div><div class="line">						<span class="string">"Could not find DispatcherServlet's default strategy class ["</span> + className +</div><div class="line">								<span class="string">"] for interface ["</span> + key + <span class="string">"]"</span>, ex);</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">catch</span> (LinkageError err) &#123;</div><div class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> BeanInitializationException(</div><div class="line">						<span class="string">"Error loading DispatcherServlet's default strategy class ["</span> + className +</div><div class="line">								<span class="string">"] for interface ["</span> + key + <span class="string">"]: problem with class file or dependent class"</span>, err);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> strategies;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> LinkedList&lt;T&gt;();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>DefaultAnnotationHandlerMapping.determineUrlsForHandler</strong>：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Checks for presence of the &#123;<span class="doctag">@link</span> org.springframework.web.bind.annotation.RequestMapping&#125;</div><div class="line"> * annotation on the handler class and on any of its methods.</div><div class="line"> */</div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="keyword">protected</span> String[] determineUrlsForHandler(String beanName) &#123;</div><div class="line">	ApplicationContext context = getApplicationContext();</div><div class="line">	Class&lt;?&gt; handlerType = context.getType(beanName);</div><div class="line">	RequestMapping mapping = context.findAnnotationOnBean(beanName, RequestMapping.class);</div><div class="line">	<span class="keyword">if</span> (mapping != <span class="keyword">null</span>) &#123;</div><div class="line">		<span class="comment">// @RequestMapping found at type level</span></div><div class="line">		<span class="keyword">this</span>.cachedMappings.put(handlerType, mapping);</div><div class="line">		Set&lt;String&gt; urls = <span class="keyword">new</span> LinkedHashSet&lt;String&gt;();</div><div class="line">		String[] typeLevelPatterns = mapping.value();</div><div class="line">		<span class="keyword">if</span> (typeLevelPatterns.length &gt; <span class="number">0</span>) &#123;</div><div class="line">			<span class="comment">// @RequestMapping specifies paths at type level</span></div><div class="line">			String[] methodLevelPatterns = determineUrlsForHandlerMethods(handlerType, <span class="keyword">true</span>);</div><div class="line">			<span class="keyword">for</span> (String typeLevelPattern : typeLevelPatterns) &#123;</div><div class="line">				<span class="keyword">if</span> (!typeLevelPattern.startsWith(<span class="string">"/"</span>)) &#123;</div><div class="line">					typeLevelPattern = <span class="string">"/"</span> + typeLevelPattern;</div><div class="line">				&#125;</div><div class="line">				<span class="keyword">boolean</span> hasEmptyMethodLevelMappings = <span class="keyword">false</span>;</div><div class="line">				<span class="keyword">for</span> (String methodLevelPattern : methodLevelPatterns) &#123;</div><div class="line">					<span class="keyword">if</span> (methodLevelPattern == <span class="keyword">null</span>) &#123;</div><div class="line">						hasEmptyMethodLevelMappings = <span class="keyword">true</span>;</div><div class="line">					&#125;</div><div class="line">					<span class="keyword">else</span> &#123;</div><div class="line">						String combinedPattern = getPathMatcher().combine(typeLevelPattern, methodLevelPattern);</div><div class="line">						addUrlsForPath(urls, combinedPattern);</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">				<span class="keyword">if</span> (hasEmptyMethodLevelMappings ||</div><div class="line">						org.springframework.web.servlet.mvc.Controller.class.isAssignableFrom(handlerType)) &#123;</div><div class="line">					addUrlsForPath(urls, typeLevelPattern);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> StringUtils.toStringArray(urls);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span> &#123;</div><div class="line">			<span class="comment">// actual paths specified by @RequestMapping at method level</span></div><div class="line">			<span class="keyword">return</span> determineUrlsForHandlerMethods(handlerType, <span class="keyword">false</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (AnnotationUtils.findAnnotation(handlerType, Controller.class) != <span class="keyword">null</span>) &#123;</div><div class="line">		<span class="comment">// @RequestMapping to be introspected at method level</span></div><div class="line">		<span class="keyword">return</span> determineUrlsForHandlerMethods(handlerType, <span class="keyword">false</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>通过遍历每一个类，查找<strong>RequestMapping</strong>注解，得到了所有controller层的请求Url。<br>最后讲Url和handle存入Map<string, object="">集合中，以备解析请求的时候快速找到controller。<br><strong>initHandlerMappings</strong>的流程大概就是以上这些。</string,></p>
+<p>其他方法和<strong>initHandlerMappings</strong>类似，就不废话了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>回顾整个SpringMVC的初始化流程，我们看到，通过HttpServletBean、FrameworkServlet、DispatcherServlet三个不同的类层次，<br>SpringMVC的设计者将三种不同的职责分别抽象，运用模版方法设计模式分别固定在三个类层次中。<br>其中：</p>
+<ul>
+<li>HttpServletBean完成的是<init-param>配置元素的依赖注入，</init-param></li>
+<li>FrameworkServlet完成的是容器上下文的建立，</li>
+<li>DispatcherServlet完成的是SpringMVC具体编程元素的初始化策略。</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/91ddf859gy1ffxpu07otbj20go07r749.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;本文将分析SpringMVC的核心分发器DispatcherServlet的初始化过程，让读者了解这
+    
+    </summary>
+    
+      <category term="SpringMVC" scheme="http://oking.me/categories/SpringMVC/"/>
+    
+    
+      <category term="SpringMVC源码分析" scheme="http://oking.me/tags/SpringMVC%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>多模块工程的打包命令</title>
+    <link href="http://oking.me/2017/05/17/Maven/%E5%A4%9A%E6%A8%A1%E5%9D%97%E5%B7%A5%E7%A8%8B%E7%9A%84%E6%89%93%E5%8C%85/"/>
+    <id>http://oking.me/2017/05/17/Maven/多模块工程的打包/</id>
+    <published>2017-05-17T02:15:02.000Z</published>
+    <updated>2017-05-27T05:48:03.226Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://ww1.sinaimg.cn/large/91ddf859gy1ffzvgc7tv1j209g02egll.jpg" alt=""></p>
+<h2 id="命令："><a href="#命令：" class="headerlink" title="命令："></a>命令：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-am --also-make 同时构建所列模块的依赖模块；</div><div class="line"></div><div class="line">-amd -also-make-dependents 同时构建依赖于所列模块的模块；</div><div class="line"></div><div class="line">-pl --projects &lt;arg&gt; 构建制定的模块，模块间用逗号分隔；</div><div class="line"></div><div class="line">-rf -resume-from &lt;arg&gt; 从指定的模块恢复反应堆。</div></pre></td></tr></table></figure>
+<p>看英文的更助于理解：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">-am,--also-make	</div><div class="line"> 	If project list is specified, also build projects required by the list</div><div class="line"></div><div class="line">-amd,--also-make-dependents	</div><div class="line">	If project list is specified, also build projects that depend on projects on the list</div><div class="line"></div><div class="line">-pl,--projects &lt;arg&gt;	</div><div class="line">	Comma-delimited list of specified reactor projects to build instead of all projects.</div><div class="line">	A project can be specified by [groupId]:	</div><div class="line"> 		artifactId or by its relative path.</div><div class="line"></div><div class="line">-rf,--resume-frome &lt;arg&gt;</div><div class="line"> 	Resume reactor from specified project</div></pre></td></tr></table></figure></p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn clean install package -pl A -am</div></pre></td></tr></table></figure>
+<p>上述命令的意思是指定构建Module A, 同时依据依赖树的路径，构建A的依赖（无论是直接还是间接的）。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/91ddf859gy1ffzvgc7tv1j209g02egll.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;命令：&quot;&gt;&lt;a href=&quot;#命令：&quot; class=&quot;headerlink&quot; ti
+    
+    </summary>
+    
+      <category term="Maven" scheme="http://oking.me/categories/Maven/"/>
+    
+    
+      <category term="Maven" scheme="http://oking.me/tags/Maven/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mysql数据库软件安装与配置</title>
+    <link href="http://oking.me/2017/04/19/Mysql/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
+    <id>http://oking.me/2017/04/19/Mysql/Mysql数据库软件安装与配置/</id>
+    <published>2017-04-19T02:25:45.000Z</published>
+    <updated>2017-05-24T01:58:02.843Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="centos7下快速安装mysql"><a href="#centos7下快速安装mysql" class="headerlink" title="centos7下快速安装mysql"></a>centos7下快速安装mysql</h2><p> CentOS 7的yum源中貌似没有正常安装MySQL时的mysql-sever文件，需要去官网上下载</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm</div><div class="line">rpm -ivh mysql-community-release-el7-5.noarch.rpm</div><div class="line">yum install mysql-community-server</div></pre></td></tr></table></figure>
+<p>​</p>
+<h2 id="重启mysql服务"><a href="#重启mysql服务" class="headerlink" title="重启mysql服务"></a>重启mysql服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl start mysqld</div></pre></td></tr></table></figure>
+<p>​</p>
+<h2 id="设置root用户密码"><a href="#设置root用户密码" class="headerlink" title="设置root用户密码"></a>设置root用户密码</h2><p>​</p>
+<ul>
+<li>连接mysql(初次安装mysql，root默认无密码)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -uroot</div></pre></td></tr></table></figure>
+<ul>
+<li>设置root用户密码为root</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set password for ‘root’@‘localhost’ = password(&apos;root&apos;);</div></pre></td></tr></table></figure>
+<ul>
+<li>远程连接授权</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">GRANT ALL PRIVILEGES ON *.* TO &apos;root&apos;@&apos;%&apos; IDENTIFIED BY &apos;root&apos; WITH GRANT OPTION;</div><div class="line">FLUSH   PRIVILEGES;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;centos7下快速安装mysql&quot;&gt;&lt;a href=&quot;#centos7下快速安装mysql&quot; class=&quot;headerlink&quot; title=&quot;centos7下快速安装mysql&quot;&gt;&lt;/a&gt;centos7下快速安装mysql&lt;/h2&gt;&lt;p&gt; CentOS 7的
+    
+    </summary>
+    
+    
+      <category term="Mysql" scheme="http://oking.me/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>resilio sync共享工具</title>
+    <link href="http://oking.me/2017/02/06/%E5%85%B1%E4%BA%AB%E5%B7%A5%E5%85%B7/sync/"/>
+    <id>http://oking.me/2017/02/06/共享工具/sync/</id>
+    <published>2017-02-06T06:15:02.000Z</published>
+    <updated>2017-04-19T03:39:03.183Z</updated>
+    
+    <content type="html"><![CDATA[<p>当自己需要多设备同步或与同事需要频繁共享文件时，QQ 或微信的文件传输相对是不够用的，使用 Dropbox 或百度云这样的网盘服务，来保持文件始终最新会是更省事的方法。</p>
+<p>不过，通过这些网盘传文件，基本都需要把文件上传到服务器，由此会产生这几个问题：</p>
+<ul>
+<li>对网络环境依赖较高。你需要先把文件上传到服务器，之后再由服务器分发到其它设备上，即使在局域网下，上传下载速度仍取决于网速；</li>
+<li>容量和传输速度受限。网盘都会有空间大小限制，如果达到上限，只能付费扩容；国内的百度云更是会对传输速度进行限制；</li>
+<li>影响文档结构。这些服务会在设备上创建一个文件夹，且只会对该文件夹内的内容进行同步，如果你习惯整理文档，这种同步方式势必会影响你的文档结构；</li>
+<li>安全问题。这也是很多人最关心的一点，国内网盘隐私保护没保障，还有随时关停的风险；国外大厂虽值得信赖，但因访问困难，也不适合所有人。</li>
+</ul>
+<p><a href="https://www.resilio.com" target="_blank" rel="external"><strong>Resilio Sync</strong></a>，原名：BitTorrent Sync，<br>采用了不一样的解决方法：不需要把文件上传到云端服务器，而是通过 P2P 的方式，直接将文件从你的设备传到对方设备上，它不限速、不限文件大小、不需要注册账号。</p>
+<p>资源网站：<a href="http://wherebt.com/" target="_blank" rel="external">http://wherebt.com/</a></p>
+<h1 id="使用介绍"><a href="#使用介绍" class="headerlink" title="使用介绍"></a>使用介绍</h1><h2 id="共享文件"><a href="#共享文件" class="headerlink" title="共享文件"></a>共享文件</h2><ol>
+<li><p>添加分享文件夹<br><img src="http://ww1.sinaimg.cn/large/91ddf859gy1fcgsbkwu13j20l8077js2" alt=""><br><strong>分享文件夹有三种</strong>：</p>
+<ul>
+<li>标准文件夹</li>
+<li>高级文件夹</li>
+<li>加密文件夹</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/91ddf859gy1fcgrygzsz6j20le0htq4q" alt=""></p>
+</li>
+</ol>
+<blockquote>
+<p>经过测试，只有加密文件夹可以通过秘钥分享，其他只能通过连接或者二维码的方式分享。</p>
+</blockquote>
+<ol>
+<li><p>设置共享文件夹属性</p>
+<ul>
+<li><p>普通文件夹属性：</p>
+<ul>
+<li>链接分享<br><img src="http://ww1.sinaimg.cn/large/91ddf859gy1fcgrmc303bj20le0htdh6" alt=""></li>
+<li>二维码分享<br><img src="http://ww1.sinaimg.cn/large/91ddf859gy1fcgsejx39aj20le0htwfp" alt=""></li>
+</ul>
+</li>
+<li>加密文件夹属性：<br><img src="http://ww1.sinaimg.cn/large/91ddf859gy1fcgsi2w7mfj20le0htwfy" alt=""></li>
+</ul>
+</li>
+</ol>
+<h2 id="下载文件"><a href="#下载文件" class="headerlink" title="下载文件"></a>下载文件</h2><ol>
+<li>点击“输入秘钥或链接”<br><img src="http://ww1.sinaimg.cn/large/91ddf859gy1fcgrygzsz6j20le0htq4q" alt=""></li>
+<li>输入相应秘钥或链接<br><img src="http://ww1.sinaimg.cn/large/91ddf859gy1fcgsko7ehtj20le0ht3zi" alt=""></li>
+</ol>
+<p>​    </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;当自己需要多设备同步或与同事需要频繁共享文件时，QQ 或微信的文件传输相对是不够用的，使用 Dropbox 或百度云这样的网盘服务，来保持文件始终最新会是更省事的方法。&lt;/p&gt;
+&lt;p&gt;不过，通过这些网盘传文件，基本都需要把文件上传到服务器，由此会产生这几个问题：&lt;/p&gt;
+&lt;
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://oking.me/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+</feed>
