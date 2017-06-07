@@ -4,7 +4,10 @@ date: 2017-05-24 09:53:04
 tags: [Mysql]
 categories: [Mysql]
 ---
+
+<p align="center">
 ![](http://ww1.sinaimg.cn/large/91ddf859gy1ffzvdjnuohj20d206yjrc.jpg)
+</p>
 今天来说一下Mysql的主从复制配置方面的事情。
 
 手上有两台服务器，信息如下：

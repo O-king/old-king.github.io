@@ -5,6 +5,9 @@ tags: [Memcache]
 categories: [内存数据库]
 ---
 
+<p align="center">
+![](http://memcached.org/images/memcached_banner75.jpg)
+</p>
 
 1. #查找Memcached
 ```

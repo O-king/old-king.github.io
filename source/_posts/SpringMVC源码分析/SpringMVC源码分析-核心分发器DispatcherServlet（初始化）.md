@@ -4,7 +4,11 @@ date: 2017-05-17 18:31:23
 categories: [SpringMVC]
 tags: [SpringMVC源码分析]
 ---
+
+<p align="center">
 ![](http://ww1.sinaimg.cn/large/91ddf859gy1ffxpu07otbj20go07r749.jpg)
+</p>
+
 本文将分析SpringMVC的核心分发器DispatcherServlet的初始化过程，让读者了解这个入口Servlet的作用。
 
 ## SpringMVC配置
@@ -52,7 +56,9 @@ tags: [SpringMVC源码分析]
 至此，SpringMVC的简单配置已结束，下面让我们来具体看一下DispatcherServlet的源码。
 
 ## SpringMVC初始化流程图
+<p align="center">
 ![](http://ww1.sinaimg.cn/large/91ddf859gy1ffoj4iu5rhj20qd0gddgi.jpg)
+</p>
 
 ## DispatcherServlet初始化流程分析
 ```java

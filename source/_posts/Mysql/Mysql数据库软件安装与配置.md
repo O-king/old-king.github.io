@@ -3,7 +3,9 @@ title: Mysql数据库软件安装与配置
 date: 2017-04-19 10:25:45
 tags: [Mysql]
 ---
-
+<p align="center">
+![](http://ww1.sinaimg.cn/large/91ddf859gy1ffzvdjnuohj20d206yjrc.jpg)
+</p>
 ## centos7下快速安装mysql
 
  CentOS 7的yum源中貌似没有正常安装MySQL时的mysql-sever文件，需要去官网上下载

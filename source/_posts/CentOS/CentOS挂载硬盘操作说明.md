@@ -4,7 +4,10 @@ date: 2017-05-25 16:15:10
 tags: [挂载硬盘]
 categories: [CentOS]
 ---
+
+<p align="center">
 ![](http://ww1.sinaimg.cn/large/91ddf859gy1ffxpsafg20j20sg0jqgmg.jpg)
+</p>
 
 在 Linux 中，为磁盘分区通常使用 fdisk 和 parted 命令。通常情况下，使用 fdisk 可以满足日常的使用，但是它仅仅支持 2 TB 以下磁盘的分区，超出 2 TB 部分无法识别。
 

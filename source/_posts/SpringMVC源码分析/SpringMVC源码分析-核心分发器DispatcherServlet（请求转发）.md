@@ -4,7 +4,9 @@ date: 2017-05-27 14:15:02
 categories: [SpringMVC]
 tags: [SpringMVC源码分析]
 ---
+<p align="center">
 ![](http://ww1.sinaimg.cn/large/91ddf859gy1ffxpu07otbj20go07r749.jpg)
+</p>
 本文将分析SpringMVC的核心分发器DispatcherServlet的处理请求的过程，让读者了解SpringMVC是如何处理请求的。
 
 原生的Servlet 生命周期可被定义为从创建直到毁灭的整个过程。
