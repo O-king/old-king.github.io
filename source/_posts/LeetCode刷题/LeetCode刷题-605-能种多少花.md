@@ -6,7 +6,7 @@ categories: [LeetCode]
 ---
 
 <p align="center" style="background:black;border-radius:10px">
-![](https://leetcode.com/static/images/LeetCode_nav.png)
+![](http://ww1.sinaimg.cn/large/91ddf859gy1fgmvct3dndj209x02xt8w.jpg)
 </p>
 
 # [原题](https://leetcode.com/problems/can-place-flowers/#/description)

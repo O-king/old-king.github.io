@@ -6,7 +6,7 @@ categories: [内存数据库]
 ---
 
 <p align="center">
-![](http://memcached.org/images/memcached_banner75.jpg)
+![](http://ww1.sinaimg.cn/large/91ddf859gy1fgmvdrwp23j20lt041wf8.jpg)
 </p>
 
 1. #查找Memcached

@@ -1,5 +1,5 @@
 ---
-title: resilio sync共享工具
+title: Resilio Sync共享工具
 date: 2017-02-06 14:15:02
 tags: [工具]
 ---
