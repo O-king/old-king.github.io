@@ -1,7 +1,7 @@
 ---
 title: CentOS挂载硬盘操作说明
 date: 2017-05-25 16:15:10
-tags: [挂载硬盘]
+tags: [HarhDisk]
 categories: [CentOS]
 ---
 

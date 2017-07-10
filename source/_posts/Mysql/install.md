@@ -2,15 +2,16 @@
 title: Mysql数据库软件安装与配置
 date: 2017-04-19 10:25:45
 tags: [Mysql]
+categories:	[Mysql]
 ---
 <p align="center">
 ![](http://ww1.sinaimg.cn/large/91ddf859gy1ffzvdjnuohj20d206yjrc.jpg)
 </p>
 ## centos7下快速安装mysql
 
- CentOS 7的yum源中貌似没有正常安装MySQL时的mysql-sever文件，需要去官网上下载
+CentOS 7的yum源中貌似没有正常安装MySQL时的mysql-sever文件，需要去官网上下载
 
- ```shell
+```shell
 wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
 rpm -ivh mysql-community-release-el7-5.noarch.rpm
 yum install mysql-community-server
@@ -21,7 +22,7 @@ yum install mysql-community-server
 ## 重启mysql服务
 
 ```shell
-systemctl start mysqld
+systemctl restart mysqld
 ```
 
 ​
@@ -39,7 +40,9 @@ mysql -uroot
 * 设置root用户密码为root
 
 ```shell
-set password for ‘root’@‘localhost’ = password('root');
+use mysql;
+update user set password=password('root') where user='root' and host='localhost';
+flush privileges;
 ```
 
 * 远程连接授权
