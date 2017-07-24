@@ -1,5 +1,5 @@
 ---
-title: zookeeper集群
+title: Zookeeper集群
 date: 2017-07-10 14:44:19
 tags: [zookeeper]
 categories: [zookeeper]

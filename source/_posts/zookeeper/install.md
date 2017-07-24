@@ -1,5 +1,5 @@
 ---
-title: zookeeper安装
+title: Zookeeper安装
 date: 2017-07-10 13:46:35
 tags: [zookeeper]
 categories: [zookeeper]

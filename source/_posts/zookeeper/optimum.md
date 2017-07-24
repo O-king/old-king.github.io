@@ -1,5 +1,5 @@
 ---
-title: zookeeper配置优化
+title: Zookeeper配置优化
 date: 2017-07-10 14:44:19
 tags: [zookeeper]
 categories: [zookeeper]

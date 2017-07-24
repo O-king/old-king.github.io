@@ -1,5 +1,5 @@
 ---
-title: kafka安装
+title: Kafka安装
 date: 2017-07-10 15:14:52
 tags: [kafka]
 categories: [kafka]
