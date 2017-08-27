@@ -1,6 +1,5 @@
 title: 多模块工程的打包命令
 date: 2017-05-17 10:15:02
-layout: timeline
 categories: [Maven]
 tags: [Maven]
 ------------
