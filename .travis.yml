@@ -28,6 +28,10 @@ after_script:
 branches:
   only:
     - dev
+    
+cache:
+  directories:
+    - node_modules
 env:
  global:
    - GH_REF: github.com/old-king/old-king.github.io.git
