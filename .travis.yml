@@ -1,15 +1,16 @@
 language: node_js
-node_js: 
-    - 0.4 
-    - 0.6
+node_js:
+  - "4"  # nodejs的版本
 
 # S: Build Lifecycle
 install:
   - npm install
 
 
-#before_script:
- # - npm install -g gulp
+before_install:
+  - export TZ='Asia/Shanghai'  # 设置时区
+  - npm install -g hexo
+  - npm install -g hexo-cli
 
 script:
   - hexo g
