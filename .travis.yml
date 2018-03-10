@@ -1,7 +1,7 @@
 language: node_js
 # nodejs的版本
-# node_js:
-#   - "st"
+node_js:
+  - "node"
 
 # S: Build Lifecycle
 install:
