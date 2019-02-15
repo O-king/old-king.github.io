@@ -8,7 +8,7 @@ categories: [JVM]
 
 ## ![](https://img-blog.csdn.net/20180521220215992?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE5NzIxNzE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
-从这张图中很直观的看到，程序[计数器](https://www.baidu.com/s?wd=%E8%AE%A1%E6%95%B0%E5%99%A8&tn=24004469_oem_dg&rsv_dl=gh_pl_sl_csd)，虚拟机栈，native栈是线程私有的，堆是线程共有的，现在详细介绍JVM各个区块。
+从这张图中很直观的看到，程序计数器，虚拟机栈，native栈是线程私有的，堆是线程共有的，现在详细介绍JVM各个区块。
 
 
 
